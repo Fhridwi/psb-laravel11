@@ -14,7 +14,7 @@ public function up()
     Schema::create('santris', function (Blueprint $table) {
         $table->id();
         $table->string('nama_santri');
-        $table->date('ttl');
+        $table->string('ttl');
         $table->enum('jenis_kelamin', ['L', 'P']);
 
         $table->integer('anak_ke');
@@ -33,6 +33,7 @@ public function up()
         $table->string('email_ortu');
         
         // Data Wali
+        $table->string('wali');
         $table->string('nama_wali')->nullable();
         $table->string('pekerjaan_wali')->nullable();
         $table->integer('penghasilan_wali')->nullable();
@@ -51,7 +52,7 @@ public function up()
         $table->string('pendidikan_lanjutan');
         $table->string('prestasi')->nullable();
 
-        $table->boolean('status_pendaftaran');
+        $table->enum('Pending', ['Pending','Data Kurang Lengkap', 'Diverifikasi']);
         $table->string('code_pendaftaran')->nullable();
         
         $table->timestamps();

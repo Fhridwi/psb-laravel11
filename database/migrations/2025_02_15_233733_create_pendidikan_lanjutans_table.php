@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pendidikan_lanjutans', function (Blueprint $table) {
             $table->id();
-            $table->string('unit_pendidkan');
+            $table->string('unit_pendidikan');
             $table->string('tingkat_pendidikan');
             $table->timestamps();
         });
