@@ -20,7 +20,7 @@
             <div class="flex flex-col">
                 <a class="block px-4 py-2 text-gray-600 hover:bg-green-100" href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a class="block px-4 py-2 text-gray-600 hover:bg-green-100" href="informasi.html"><i class="fas fa-info-circle"></i> Informasi</a>
-                <a href="from-psb.html"  class="mt-2 block px-4 py-1 mx-1 my-1 text-white bg-green-600 hover:bg-green-700 rounded-lg transition">Daftar</a>
+                <a href="{{ route('user.create') }}"  class="mt-2 block px-4 py-1 mx-1 my-1 text-white bg-green-600 hover:bg-green-700 rounded-lg transition">Daftar</a>
             </div>
         </div>
     </div>

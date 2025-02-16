@@ -1,22 +1,20 @@
 @extends('master_user')
 
-@if (session('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>
+@if(session('success'))
+    <script>
+        window.addEventListener('load', function () {
+            Swal.fire({
+                title: 'Pendaftaran Berhasil!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'Got it!',
+                width: '300px', height: '150px',
+                padding: '17px',
+            });
+        });
+    </script>
 @endif
 
-@if (session('error'))
-    <div class="alert alert-danger" role="alert">
-        {{ session('error') }}
-    </div>
-@endif
-
-@if (session('warning'))
-    <div class="alert alert-warning" role="alert">
-        {{ session('warning') }}
-    </div>
-@endif
 
 
 @section('content')

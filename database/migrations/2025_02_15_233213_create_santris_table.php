@@ -38,7 +38,7 @@ public function up()
         $table->string('pekerjaan_wali')->nullable();
         $table->integer('penghasilan_wali')->nullable();
         $table->string('no_hp_wali')->nullable();
-        $table->string('email_wali')->nullable();
+        $table->string('email_wali')->nullable()->unique();
         
         // Data File
         $table->string('pas_foto');
