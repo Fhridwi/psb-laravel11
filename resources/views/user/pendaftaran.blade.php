@@ -134,10 +134,15 @@
 
                 <div class="flex flex-col">
                     <label for="status_ayah" class="mb-2">
-                       Status Ayah
+                    Status Ayah
                     </label>
-                    <input value="{{ old('status_ayah') }}" type="text" id="status_ayah" name="status_ayah" class="p-2 border border-gray-300 rounded outline-none" placeholder="Hidup / Meninggal" >
+                    <select id="status_ayah" name="status_ayah" class="p-2 border border-gray-300 rounded outline-none">
+                        <option value= "">Pilih Status Ayah</option>
+                        <option value="Hidup">Hidup</option>
+                        <option value="Meninggal">Wafat</option>
+                    </select>
                 </div>
+
                 @error('status_ayah')
                 <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -146,8 +151,12 @@
                     <label for="status_ibu" class="mb-2">
                        Status Ibu
                     </label>
-                    <input value="{{ old('status_ibu') }}" type="text" id="status_ibu" name="status_ibu" class="p-2 border border-gray-300 rounded outline-none" placeholder="Hidup/Meninggal" >
-                </div>
+                        <select id="status_ibu" name="status_ibu" class="p-2 border border-gray-300 rounded outline-none">
+                            <option value= "">Pilih Status Ayah</option>
+                            <option value="Hidup">Hidup</option>
+                            <option value="Meninggal">Wafat</option>
+                        </select>                
+                    </div>
                 @error('status_ibu')
                 <span class="text-red-500">{{ $message }}</span>
                 @enderror
