@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DataSantriController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
@@ -22,15 +23,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Route Admin
 
- Route::get('/admin/dataSantri', function () {
-
-    $title = 'Data Santri';
-     return view('admin.data_santri', ['title' => $title]);
- })
- ->name('admin.data_santri');
-
  Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dataSantri', [DataSantriController::class,'index'])->name('admin.data_santri');
  });
 
 

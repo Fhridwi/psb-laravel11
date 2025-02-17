@@ -7,6 +7,7 @@ use App\Models\Santri;
 use App\Models\TahunAjaran;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
@@ -15,31 +16,32 @@ class DashboardController extends Controller
         $title = 'Dashboard Admin';
         $name = session('name');
         $email = session('email');
-        $santris = Santri::all();
+        $santris = Santri::paginate(10);
         $tahunAjaran1 = TahunAjaran::latest()->first();
         $slast = Santri::latest()->take(5)->get();
         
         // Ambil semua tahun ajaran  model Santri
-        $tahunAjaran = Santri::selectRaw('YEAR(created_at) as tahun')
-                             ->distinct()
-                             ->get()
-                             ->pluck('tahun');
+        $tahunAjaran = cache::remember('tahun_ajaran', 60, function () {
+            return Santri::selectRaw('YEAR(created_at) as tahun')
+                        ->distinct()
+                        ->get()
+                        ->pluck('tahun');
+        });
+        
         
         // Ambil data santri  tahun ajaran
         $dataChart = [];
         foreach ($tahunAjaran as $year) {
-            $santris = Santri::whereYear('created_at', $year)->get();
-            
-            // Kelompokkan data berdasarkan bulan
-            $months = $santris->groupBy(function($date) {
-                return Carbon::parse($date->created_at)->format('m'); 
-            });
+            $santrisPerMonth = Santri::whereYear('created_at', $year)
+                                    ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+                                    ->groupBy('month')
+                                    ->get();
             
             $chartData = [];
-            foreach ($months as $month => $items) {
+            foreach ($santrisPerMonth as $data) {
                 $chartData[] = [
-                    'date' => Carbon::createFromFormat('m', $month)->format('F'),   
-                    'count' => count($items), 
+                    'date' => Carbon::createFromFormat('m', $data->month)->format('F'),
+                    'count' => $data->count,
                 ];
             }
             $dataChart[$year] = $chartData;

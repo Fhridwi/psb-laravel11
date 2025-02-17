@@ -32,7 +32,7 @@
             <li class="sidebar-title">Menu</li>
             
             <li class="sidebar-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <a href="" class="sidebar-link">
+                <a href="{{ route('admin.dashboard')}}" class="sidebar-link">
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -48,7 +48,7 @@
             </li>
 
             <li class="sidebar-item {{ request()->routeIs('admin.data_santri') ? 'active' : '' }}">
-                <a href="" class="sidebar-link">
+                <a href="{{ route('admin.data_santri') }}" class="sidebar-link">
                     <i class="fas fa-users"></i>
                     <span>Data Santri</span>
                 </a>
