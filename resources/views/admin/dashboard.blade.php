@@ -136,7 +136,7 @@
                         </div>
                         <div class="ms-3 name">
                             <h5 class="font-bold">{{ $name }}</h5>
-                            <h6 class="text-muted mb-0 text-sm">{{  }}</h6>
+                            <h6 class="text-muted mb-0 text-sm">{{ $email }}</h6>
                         </div>
                     </div>
                 </div>
