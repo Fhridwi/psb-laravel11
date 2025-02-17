@@ -47,6 +47,9 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+
+            <li class="sidebar-title">Pendaftaan</li>
+
     
             <li class="sidebar-item {{ request()->routeIs('admin.data_santri') ? 'active' : '' }}">
                 <a href="{{ route('admin.data_santri') }}" class="sidebar-link">
