@@ -194,10 +194,9 @@
                     <div class="d-flex align-items-center">
                         <div class="ms-3 name">
                             <h5 class="font-bold">STATUS PENDAFTARAN</h5>
-                            <h6 class="text-muted mb-0 text-sm"> Setting : Administrator </h6>
-                            <h6 class="text-muted mb-0 text-sm"> Tahun Ajaran  : 2025/2026  </h6>
-                            <h6 class="text-muted mb-0 text-sm"> Kouta Santri : 857 Santri  </h6>
-                            <h6 class="text-muted mb-0 text-sm"> Status : <span class="btn btn-sm btn-success m-3">DIBUKA</span> </h6>
+                            <h6 class="text-muted mb-0 text-sm">Setting: Administrator</h6>
+                            <h6 class="text-muted mb-0 text-sm">Tahun Ajaran: {{ $tahunAjaran1->tahun_ajaran }}</h6>
+                            <h6 class="text-muted mb-0 text-sm">Status: <span class="btn btn-sm {{ $tahunAjaran1->status_pendaftaran == 'DIBUKA' ? 'btn-success' : 'btn-danger' }} m-3">{{ $tahunAjaran1->status_pendaftaran }}</span></h6>
                         </div>
                     </div>
                 </div>
@@ -208,37 +207,24 @@
                 <div class="card-header">
                     <h4>Pendaftar Baru </h4>
                 </div>
+
                 <div class="card-content pb-4">
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="{{ asset('./assets/compiled/jpg/4.jpg') }}">
+                        @foreach ($slast as $new)
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="avatar avatar-lg ">
+                                @if($new->pas_foto)
+                                         <img src="{{ Storage::url($new->pas_foto) }}" alt="Foto Tahun Ajaran" class="img-fluid">
+                                 @else
+                                      <h6 class="text-muted mb-0 text-sm">Tidak ada foto tersedia.</h6>
+                                 @endif
+                            </div>
+                            <div class="name ms-4">
+                                <h5 class="mb-1"> {{ $new->nama_santri }} </h5>
+                                <h6 class="text-muted mb-0">{{ $new->no_hp_orang_tua }}</h6>
+                            </div>
+                            
                         </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="{{ asset('./assets/compiled/jpg/5.jpg') }}">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">@imdean</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="{{ asset('./assets/compiled/jpg/1.jpg') }}">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="px-4">
-                        <button class="btn btn-block btn-xl btn-outline-primary font-bold mt-3">Lihat Selengkapnya</button>
-                    </div>
+                        @endforeach
                 </div>
             </div>
         </div>
@@ -248,50 +234,50 @@
 @endsection
 
 @section('chart')
-<script>
-    const dataChart = @json($dataChart);
-    const selectTahun = document.getElementById('tahunAjaran');
-    const ctx = document.getElementById('chart-profile-visit').getContext('2d');
+    <script>
+            const dataChart = @json($dataChart);
+            const selectTahun = document.getElementById('tahunAjaran');
+            const ctx = document.getElementById('chart-profile-visit').getContext('2d');
+            
+            let chart;
     
-    let chart;
-
-    function renderChart(year) {
-        const chartData = dataChart[year] || [];
-        const dates = chartData.map(item => item.date);
-        const counts = chartData.map(item => item.count);
-
-        if (chart) {
-            chart.destroy();
-        }
-
-        chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: dates,
-                datasets: [{
-                    label: 'Jumlah Santri',
-                    data: counts,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgb(75, 192, 192)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+            function renderChart(year) {
+                const chartData = dataChart[year] || [];
+                const dates = chartData.map(item => item.date);
+                const counts = chartData.map(item => item.count);
+    
+                if (chart) {
+                    chart.destroy();
                 }
+    
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Jumlah Santri',
+                            data: counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgb(75, 192, 192)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
             }
-        });
-    }
-
-    renderChart(selectTahun.value);
-
-    selectTahun.addEventListener('change', function() {
-        renderChart(this.value);
-    });
-</script>
-
+    
+            renderChart(selectTahun.value);
+    
+            selectTahun.addEventListener('change', function() {
+                renderChart(this.value);
+            });
+        </script>
+        
 @endsection
