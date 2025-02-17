@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\DataSantriController;
+use App\Http\Controllers\Admin\dataSantri\DataSantriController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +24,15 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 //Route Admin
 
  Route::prefix('admin')->middleware('auth')->group(function() {
+    // Dashboard Admin
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    // Data Santri Admin
     Route::get('/dataSantri', [DataSantriController::class,'index'])->name('admin.data_santri');
- });
+    Route::get('/dataSantri/{id}', [DataSantriController::class, 'show'] )->name('admin.detail.santri');
+    Route::get('/dataSantri/{id}/edit', [DataSantriController::class, 'edit'] )->name('admin.edit.santri');
+    Route::post('/dataSantri/{id}', [DataSantriController::class,'update'] )->name('admin.update.santri');
+    Route::delete('/dataSantri/{id}/delete', [DataSantriController::class,'destroy'] )->name('admin.delete.santri');
+});
 
 
 

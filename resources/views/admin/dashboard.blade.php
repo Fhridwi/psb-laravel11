@@ -2,9 +2,7 @@
 
 @section('title')
     {{ $title }}
-@endsection
-
-@php
+@endsecti@php
     $total = 0;
     $laki_laki = 0;
     $perempuan = 0;
@@ -279,5 +277,18 @@
                 renderChart(this.value);
             });
         </script>
-        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+</div>
 @endsection

@@ -56,51 +56,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <head> 
 
-        <script>
-            const dataChart = @json($dataChart);
-            const selectTahun = document.getElementById('tahunAjaran');
-            const ctx = document.getElementById('chart-profile-visit').getContext('2d');
-            
-            let chart;
-    
-            function renderChart(year) {
-                const chartData = dataChart[year] || [];
-                const dates = chartData.map(item => item.date);
-                const counts = chartData.map(item => item.count);
-    
-                if (chart) {
-                    chart.destroy();
-                }
-    
-                chart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: dates,
-                        datasets: [{
-                            label: 'Jumlah Santri',
-                            data: counts,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgb(75, 192, 192)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            }
-    
-            renderChart(selectTahun.value);
-    
-            selectTahun.addEventListener('change', function() {
-                renderChart(this.value);
-            });
-        </script>
+       @yield('chart')
         
         
 
