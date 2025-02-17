@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('tahun_ajarans', function (Blueprint $table) {
             $table->id(); 
-            $table->string('tahun_ajaran'); 
+            $table->string('tahun_ajaran')->unique(); 
             $table->enum('status_pendaftaran', ['Buka', 'Tutup']); 
+            $table->string('kouta_santri');
             $table->timestamps(); 
         });
     }
