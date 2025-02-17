@@ -9,9 +9,11 @@ class TahunAjaran extends Model
 {
     use HasFactory;
 
+    protected $table = 'tahun_ajarans';
+
+
     protected $fillable = [
-        'tahun_ajaran',
-        'status_pendaftaran',
+         'tahun_ajaran', 'kouta_santri', 'status_pendaftaran'
     ];
 
     

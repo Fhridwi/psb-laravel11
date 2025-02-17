@@ -11,10 +11,7 @@
 <section class="section">
     <div class="row" id="table-striped">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Striped rows</h4>
-                </div>
+            <div class="card p-3">
                 <div class="card-content">
                     <!-- table striped -->
                     <div class="table-responsive">
@@ -73,16 +70,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        $('#santriTable').DataTable({
-            "paging": true, // Enable pagination
-            "searching": true, // Enable search
-            "lengthChange": true, // Enable changing number of records per page
-            "pageLength": 10, // Default number of records per page
-        });
-    });
-</script>
 <script>
     @if(session('success'))
         toastr.success("{{ session('success') }}", 'Success', { positionClass: 'toast-top-right' });

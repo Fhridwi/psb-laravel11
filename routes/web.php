@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\dataSantri\DataSantriController;
+use App\Http\Controllers\admin\tahunAjaran\TahunAjaranController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,15 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dataSantri/{id}/edit', [DataSantriController::class, 'edit'] )->name('admin.edit.santri');
     Route::post('/dataSantri/{id}', [DataSantriController::class,'update'] )->name('admin.update.santri');
     Route::delete('/dataSantri/{id}/delete', [DataSantriController::class,'destroy'] )->name('admin.delete.santri');
+
+    //Tahun Ajaran
+    Route::get('/tahunAjaran', [TahunAjaranController::class, 'index'] )->name('admin.tahunAjaran');
+    Route::get('/tahunAjaran/create', [TahunAjaranController::class, 'create'] )->name('admin.create.tahunAjaran');
+    Route::get('/tahun-ajaran/{id}/edit', [TahunAjaranController::class, 'edit'] )->name('admin.edit.tahunAjaran');
+    Route::post('/tahunAjaran', [TahunAjaranController::class,'store'] )->name('admin.store.tahunAjaran');
+    Route::put('/tahun-ajaran/{id}', [TahunAjaranController::class,'update'] )->name('admin.tahunAjaran.update');
+    Route::delete('/tahun-ajaran/{id}', [TahunAjaranController::class, 'destroy'])->name('admin.tahunAjaran.destroy');
+
 });
 
 

@@ -54,13 +54,6 @@
                 </a>
             </li>
 
-            <li class="sidebar-item {{ request()->routeIs('admin.kouta_psb') ? 'active' : '' }}">
-                <a href="" class="sidebar-link">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <span>Kouta PSB</span>
-                </a>
-            </li>
-
             <li class="sidebar-title">Pembayaran</li>
             
             <li class="sidebar-item {{ request()->routeIs('admin.pembayaran') ? 'active' : '' }}">
@@ -86,7 +79,7 @@
                 </a>
                 <ul class="submenu submenu-closed" style="--submenu-height: 258px;">
                     <li class="submenu-item  ">
-                        <a href="form-element-input.html" class="submenu-link">Tahun Ajaran</a>
+                        <a href="{{ route('admin.tahunAjaran') }}" class="submenu-link">Tahun Ajaran</a>
                     </li>         
                     <li class="submenu-item  ">
                         <a href="form-element-input.html" class="submenu-link">Sekolah</a>

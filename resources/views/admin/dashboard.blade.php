@@ -194,6 +194,7 @@
                             <h5 class="font-bold">STATUS PENDAFTARAN</h5>
                             <h6 class="text-muted mb-0 text-sm">Setting: Administrator</h6>
                             <h6 class="text-muted mb-0 text-sm">Tahun Ajaran: {{ $tahunAjaran1->tahun_ajaran }}</h6>
+                            <h6 class="text-muted mb-0 text-sm">Total Kouta : {{ $tahunAjaran1->kouta_santri }}</h6>
                             <h6 class="text-muted mb-0 text-sm">Status: <span class="btn btn-sm {{ $tahunAjaran1->status_pendaftaran == 'DIBUKA' ? 'btn-success' : 'btn-danger' }} m-3">{{ $tahunAjaran1->status_pendaftaran }}</span></h6>
                         </div>
                     </div>
