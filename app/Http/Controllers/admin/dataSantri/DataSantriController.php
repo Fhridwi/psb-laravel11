@@ -38,6 +38,15 @@ class DataSantriController extends Controller
         return redirect()->route('admin.data_santri')->with('success', 'Data santri berhasil diubah');
     }
 
+    public function updateStatus(Request $request, $id)
+{
+    $santri = Santri::findOrFail($id);
+    $santri->status_pendaftaran = $request->status_pendaftaran;
+    $santri->save();
+
+    return response()->json(['message' => 'Status berhasil diperbarui']);
+}
+
     public function destroy($id) {
         $santri = Santri::find($id);
         $santri->delete();

@@ -4,6 +4,7 @@
     {{ $title }}
 @endsection
 
+
 @section('content')
 <div class="container-fluid">
 
@@ -52,8 +53,9 @@
                 </li>
               </ul>
             </div>
-            <div class="alert alert-info">
-              Data pendaftar Dinyatakan <b>LOLOS</b>
+            <div class="alert alert-{{ $santri->status_pendaftaran == 'Pending' ? 'warning' : ($santri->status_pendaftaran == 'Diverifikasi' ? 'success' : 'warning') }}">
+
+              Data pendaftar Dinyatakan <b>{{ $santri->status_pendaftaran }}</b>
           </div>
           </div>
         </div>
@@ -257,6 +259,41 @@
         </div>
       </div>
     </div>
+       {{-- Tombol untuk mengubah status --}}
+  <button type="button" class="btn btn-warning btn-sm mt-2 mb-4" data-toggle="modal" data-target="#statusModal">
+    Ubah Status
+  </button>
     
-  
+  <!-- Modal -->
+<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="statusModalLabel">Konfirmasi Perubahan Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah Anda yakin ingin mengubah status pendaftaran?</p>
+        <div class="form-group">
+          <label for="status_pendaftaran">Pilih Status:</label>
+          <select id="status_pendaftaran" class="form-control">
+            <option value="Pending">Pending</option>
+            <option value="Data Kurang Lengkap">Data Kurang Lengkap</option>
+            <option value="Diverifikasi">Diverifikasi</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button" id="confirmStatusChange" class="btn btn-primary">Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 @endsection

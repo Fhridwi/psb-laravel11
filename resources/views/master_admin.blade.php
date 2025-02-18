@@ -55,6 +55,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
        @yield('chart')
         
@@ -65,6 +68,32 @@
 <!-- Need: Apexcharts -->
 <script src="{{ asset('assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/static/js/pages/dashboard.js') }}"></script>
+<script>
+    // Menunggu klik tombol "Simpan"
+    $('#confirmStatusChange').click(function () {
+      var status = $('#status_pendaftaran').val();
+      
+      // Menutup modal
+      $('#statusModal').modal('hide');
+      
+      // Kirim request ke server untuk mengubah status
+      $.ajax({
+        url: '{{ route('updateStatusPendaftaran', $santri->id) }}', // Pastikan untuk mengganti dengan route yang sesuai
+        type: 'POST',
+        data: {
+          _token: '{{ csrf_token() }}',
+          status_pendaftaran: status
+        },
+        success: function(response) {
+          alert('Status berhasil diperbarui!');
+          location.reload();  
+        },
+        error: function(xhr) {
+          alert('Terjadi kesalahan saat mengubah status.');
+        }
+      });
+    });
+  </script>
 
 </body>
 

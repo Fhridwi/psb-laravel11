@@ -33,6 +33,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dataSantri/{id}/edit', [DataSantriController::class, 'edit'] )->name('admin.edit.santri');
     Route::post('/dataSantri/{id}', [DataSantriController::class,'update'] )->name('admin.update.santri');
     Route::delete('/dataSantri/{id}/delete', [DataSantriController::class,'destroy'] )->name('admin.delete.santri');
+    //status pendaftaran
+    Route::post('/santri/{id}/update-status', [DataSantriController::class, 'updateStatus'])->name('updateStatusPendaftaran');
 
     //Tahun Ajaran
     Route::get('/tahunAjaran', [TahunAjaranController::class, 'index'] )->name('admin.tahunAjaran');
